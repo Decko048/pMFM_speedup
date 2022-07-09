@@ -1,0 +1,8 @@
+{Index in position 1 exceeds array bounds (must not exceed 17).
+
+Error in generate_inputs_for_split (line 6)
+        subject_group = subject_groups(i, :);
+
+Error in generate_inputs_wrapper (line 4)
+    generate_inputs_for_split('test');
+} 

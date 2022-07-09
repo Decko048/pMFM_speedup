@@ -1,0 +1,8 @@
+{Index in position 1 exceeds array bounds (must not exceed 14).
+
+Error in generate_SC_with_diag_for_split (line 6)
+        subject_group = subject_groups(i, :);
+
+Error in generate_SC_with_diag_wrapper (line 3)
+    generate_SC_with_diag_for_split('validation');
+} 

@@ -1,0 +1,32 @@
+
+======================================================================================
+			Resource Usage on 2022-05-24 17:57:36.254513:
+
+	JobId: 2392227.headnode
+	JobName: SC_with_diag
+	Exit Status: 0
+	NCPUs Requested: 1			NCPUs Used: 1
+						CPU Time Used: 00:00:00
+	Memory Requested: 8388608kb		Memory Used: 0b
+						Vmem Used: 0b
+	Walltime requested: 10:00:00		Walltime Used: 00:00:30
+
+	Execution Nodes Used: (node6:ncpus=1:mem=8388608kb)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-05-24 18:03:43.808898:
+
+	JobId: 2392241.headnode
+	JobName: SC_with_diag
+	Exit Status: 0
+	NCPUs Requested: 1			NCPUs Used: 1
+						CPU Time Used: 00:00:00
+	Memory Requested: 8388608kb		Memory Used: 0b
+						Vmem Used: 0b
+	Walltime requested: 10:00:00		Walltime Used: 00:01:15
+
+	Execution Nodes Used: (node13:ncpus=1:mem=8388608kb)
+
+======================================================================================
