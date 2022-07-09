@@ -1,0 +1,13 @@
+.vscode/
+._*
+job/
+jobs/
+__pycache__/
+runs/
+lightning_logs/
+reports/training_log/
+*.pickle
+notebooks/test/
+data/processed/
+tmp/
+src/old_src
