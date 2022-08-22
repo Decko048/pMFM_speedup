@@ -398,6 +398,16 @@ def CBIG_mfm_rfMRI_ode(S_E, S_I, J_I, parameter, sc_mat):
     # dS_I (noise is added at the forward simulation step)
     dS_I = -S_I / tau_I + r_I
 
+    if torch.isnan(dS_E).any() or torch.isnan(dS_I).any():
+        # dS_E = torch.zeros(S_E.shape)
+        # dS_I = torch.zeros(S_I.shape)
+        print('NaN!!!!!')
+        print('dS_E:', dS_E)
+        print('dS_I:', dS_I)
+        print('r_E:', r_E)
+        print('r_I:', r_I)
+
+
     return dS_E, dS_I, r_E
 
 
@@ -794,7 +804,8 @@ def CBIG_combined_cost_train(parameter, n_dup, FCD, SC, FC, countloop):
     '''
 
     # Loading training data
-    parameter = torch.from_numpy(parameter).type(torch.DoubleTensor).cuda()
+
+    parameter = torch.from_numpy(parameter).type(torch.DoubleTensor)
 
     # should be 10000x1
     emp_fcd = sio.loadmat(FCD)
@@ -802,11 +813,15 @@ def CBIG_combined_cost_train(parameter, n_dup, FCD, SC, FC, countloop):
 
     sc_mat_raw = csv_matrix_read(SC)
     sc_mat = sc_mat_raw * 0.02 / sc_mat_raw.max()
-    sc_mat = torch.from_numpy(sc_mat).type(torch.DoubleTensor).cuda()
+    sc_mat = torch.from_numpy(sc_mat).type(torch.DoubleTensor)
 
     emp_fc = csv_matrix_read(FC)
-    emp_fc = torch.from_numpy(emp_fc).type(torch.DoubleTensor).cuda()
+    emp_fc = torch.from_numpy(emp_fc).type(torch.DoubleTensor)
 
+    if torch.cuda.is_available():
+        parameter = parameter.cuda()
+        sc_mat = sc_mat.cuda()
+        emp_fc = emp_fc.cuda()
     # Calculating simualted BOLD signal using MFM
     bold_d, S_E_all, S_I_all, r_E_all, J_I = CBIG_mfm_multi_simulation(parameter, sc_mat, 14.4, n_dup, countloop, 0.006,
                                                                        0)

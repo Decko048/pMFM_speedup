@@ -373,7 +373,7 @@ def forward_simulation(param_vectors, path_to_group: str, n_dup: int = 5):
     FCD = os.path.join(path_to_group, 'group_level_FCD.mat')
     SC = os.path.join(path_to_group, 'group_level_SC.csv')
     FC = os.path.join(path_to_group, 'group_level_FC.csv')
-    total_cost, fc_corr_cost, fc_L1_cost, fcd_cost, bold_d, r_E, emp_fc_mean = CBIG_combined_cost_train(
+    total_cost, fc_corr_cost, fc_L1_cost, fcd_cost, _, _, _ = CBIG_combined_cost_train(
         param_vectors, n_dup, FCD, SC, FC, 0)
     return fc_corr_cost, fc_L1_cost, fcd_cost, total_cost
 

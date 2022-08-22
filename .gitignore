@@ -11,3 +11,8 @@ notebooks/test/
 data/processed/
 tmp/
 src/old_src
+simulated_FC/
+simulated_FCD/
+simulated_FC.csv
+simulated_FCD.csv
+top_100_params.csv

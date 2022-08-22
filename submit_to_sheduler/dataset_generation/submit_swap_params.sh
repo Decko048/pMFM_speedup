@@ -30,5 +30,3 @@ submit_job 'validation' '10'
 submit_job 'test' '1'
 submit_job 'test' '5'
 submit_job 'test' '10'
-
-exit 0

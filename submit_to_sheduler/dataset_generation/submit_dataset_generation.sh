@@ -37,5 +37,3 @@ done
 for ((batch_idx = 0; batch_idx < $n_batches_test; batch_idx++)); do
     submit_job 'test' ${batch_idx} ${n_batches_test}
 done
-
-exit 0

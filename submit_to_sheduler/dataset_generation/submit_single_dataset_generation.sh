@@ -23,5 +23,3 @@ function submit_job {
 submit_job 'train' '10'
 submit_job 'train' '45'
 submit_job 'test' '14'
-
-exit 0
