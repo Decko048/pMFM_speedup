@@ -2,7 +2,7 @@ import os
 from sysconfig import get_path
 import torch
 from src.basic.constants import SPLIT_NAMES, NUM_GROUP_IN_SPLIT, PATH_TO_PROJECT
-from pandas import DataFrame
+from pandas import DataFrame, Series
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -56,6 +56,8 @@ def matrix_to_np(matrix):
         matrix = matrix.to_numpy()
     elif isinstance(matrix, torch.Tensor):
         matrix = matrix.cpu().numpy()
+    elif isinstance(matrix, Series):
+        matrix = matrix.to_numpy()
     return matrix
 
 

@@ -69,15 +69,16 @@ def cmaes_wrapper(SC_path,
                   gradient_path,
                   random_seed=MANUAL_SEED,
                   dl_model=load_naive_net_no_SC(),
-                  output_path=os.path.join(PATH_TO_TESTING_REPORT, 'cmaes_wrapper'),
-                  output_file='prediction.csv'):
+                  output_dir=os.path.join(PATH_TO_TESTING_REPORT, 'cmaes_wrapper/predicted_best'),
+                  output_file=f'predicted_best.csv'):
 
+    output_dir = os.path.join(output_dir, f'seed_{random_seed}')
     SC = pd.read_csv(SC_path, header=None)
     SC = df_to_tensor(SC)
 
     # torch.cuda.set_device(gpu_number)
-    if not os.path.exists(output_path):
-        os.makedirs(output_path)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     # Setting random seed and GPU
     random_seed_cuda = random_seed
@@ -118,7 +119,7 @@ def cmaes_wrapper(SC_path,
 
     # Initializing optimization hyper-parameters
     sigma = 0.25  # 'spread' of children
-    maxloop = 1000
+    maxloop = 500
     n_dup = 5  # duplication for pMFM simulation
 
     # lambda * maxloop * num_of_initialization = number of iterations
@@ -126,7 +127,7 @@ def cmaes_wrapper(SC_path,
     # we use: lambda = 100, max_loop = 100, num_of_initialization = 1
     # CMA-ES parameters setting
     Lambda = 1000  # number of child processes
-    mu = 10  # number of top child processes
+    mu = 100  # number of top child processes
     all_parameters = np.zeros((209, maxloop * Lambda))  # numpy array to store all parameters and their associated costs
 
     weights = np.log(mu + 1 / 2) - np.log(np.arange(1, mu + 1))
@@ -160,8 +161,18 @@ def cmaes_wrapper(SC_path,
     input_para = np.zeros((dim, Lambda))
     xmin = np.zeros(N + 4)
 
-    while countloop < maxloop:
-        iteration_log = open(os.path.join(output_path, 'training_iteration.txt'), 'w')
+    prev_mean_total_cost = np.inf
+    curr_mean_total_cost = 30
+    curr_patience = 0
+    stopping_threshold = 0.000001
+    patience = 3
+    while countloop < maxloop and ((prev_mean_total_cost - curr_mean_total_cost > stopping_threshold) or
+                                   (curr_patience <= patience)):
+        if prev_mean_total_cost - curr_mean_total_cost > stopping_threshold:
+            curr_patience = 0
+        else:
+            curr_patience += 1
+        iteration_log = open(os.path.join(output_dir, 'training_iteration.txt'), 'w')
         iteration_log.write(str(countloop))
 
         start_time = time.time()
@@ -233,10 +244,12 @@ def cmaes_wrapper(SC_path,
             invsqrtC = np.dot(B, np.dot(np.diag(D**(-1)), B.T))
 
         # Monitoring the evolution status
-        cost_log = open(os.path.join(output_path, f'cost_{str(random_seed)}.txt'), 'w')
+        cost_log = open(os.path.join(output_dir, f'cost_with_seed_{str(random_seed)}.txt'), 'w')
         print('******** Generation: ' + str(countloop) + ' ********')
         cost_log.write('******** Generation: ' + str(countloop) + ' ********' + '\n')
-        print('The mean of total cost: ', np.mean(arfitsort[0:mu]))
+        prev_mean_total_cost = curr_mean_total_cost
+        curr_mean_total_cost = np.mean(arfitsort[0:mu])
+        print('The mean of total cost: ', curr_mean_total_cost)
 
         xmin[0:N] = arx[:, arindex[0]]
         xmin[N] = fc_corr_cost[arindex[0]]
@@ -247,8 +260,9 @@ def cmaes_wrapper(SC_path,
         cost_log.write('sigma: ' + str(sigma) + '\n')
         print('Best parameter set: ', arindex[0])
         cost_log.write('Best parameter set: ' + str(arindex[0]) + '\n')
-        print('Best total cost: ', np.min(total_cost))
-        cost_log.write('Best total cost: ' + str(np.min(total_cost)) + '\n')
+        best_total_cost = np.min(total_cost)
+        print('Best total cost: ', best_total_cost)
+        cost_log.write('Best total cost: ' + str(best_total_cost) + '\n')
         print('FC correlation cost: ', fc_corr_cost[arindex[0]])
         cost_log.write('FC correlation cost: ' + str(fc_corr_cost[arindex[0]]) + '\n')
         print('FC L1 cost: ', fc_L1_cost[arindex[0]])
@@ -267,23 +281,76 @@ def cmaes_wrapper(SC_path,
         cost_log.write('******************************************')
         cost_log.write("\n")
 
-    save_top_k_param(all_parameters, os.path.join(output_path, output_file), k=1000)
+    all_parameters = all_parameters[:, np.any(all_parameters, axis=0)]
+    save_top_k_param(all_parameters, os.path.join(output_dir, output_file), k=1)
 
     iteration_log.write(str(countloop) + ' Success!')
     iteration_log.close()
     cost_log.close()
 
 
-def save_top_k_param(all_param, save_dir, k=1000):
+def save_top_k_param(all_param, file_path, k=1000):
     total_cost = all_param[3, :]
     sorted_indicies = np.argsort(total_cost)
     top_k_param = all_param[:, sorted_indicies[:k]]
-    np.savetxt(os.path.join(save_dir, 'top_k_param.txt'), top_k_param, delimiter=',')
+    np.savetxt(file_path, top_k_param, delimiter=',')
 
 
-if __name__ == '__main__':
+def get_all_predicted_best_param(folder_path=os.path.join(PATH_TO_TESTING_REPORT, 'cmaes_wrapper/predicted_best')):
+    predicted_best_param_paths = []
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if ("predicted_best" in file):
+                predicted_best_param_paths.append(os.path.join(root, file))
+
+    params = []
+    for path in predicted_best_param_paths:
+        params.append(np.loadtxt(path, delimiter=','))
+
+    all_predicted_best_params = np.stack(params, axis=1)
+    np.savetxt(os.path.join(folder_path, 'all_predicted_params.csv'), all_predicted_best_params, delimiter=',')
+
+
+def simulate_with_predicted_best(split_name,
+                                 group_index,
+                                 param_path=os.path.join(PATH_TO_TESTING_REPORT,
+                                                         'cmaes_wrapper/predicted_best/all_predicted_params.csv')):
+    path_to_group = get_path_to_group(split_name, group_index)
+    all_predicted_params = np.loadtxt(param_path, delimiter=',')
+    params = all_predicted_params[4:, :]
+    predicted_costs = all_predicted_params[:4, :]
+    fc_corr_cost, fc_L1_cost, fcd_cost, total_cost = forward_simulation(params, path_to_group)
+    actual_costs = np.stack((fc_corr_cost, fc_L1_cost, fcd_cost, total_cost), axis=0)
+    actual_costs_and_prediction = np.concatenate((actual_costs, params, predicted_costs), axis=0)
+
+    save_dir = os.path.join(PATH_TO_TESTING_REPORT, 'cmaes_wrapper', split_name, str(group_index))
+    Path(save_dir).mkdir(parents=True, exist_ok=True)
+    np.savetxt(os.path.join(save_dir, 'actual_costs_and_prediction.csv'), actual_costs_and_prediction, delimiter=',')
+
+
+def try_diff_seed():
     group_path = get_path_to_group('train', '5')
     SC_path = os.path.join(group_path, 'group_level_SC.csv')
     myelin_path = os.path.join(group_path, 'group_level_myelin.csv')
     gradient_path = os.path.join(group_path, 'group_level_RSFC_gradient.csv')
-    cmaes_wrapper(SC_path, myelin_path, gradient_path)
+
+    for random_seed in range(1, 201):
+        cmaes_wrapper(SC_path, myelin_path, gradient_path, random_seed=random_seed)
+
+
+if __name__ == '__main__':
+    # try_diff_seed()
+    # get_all_predicted_best_param()
+
+    # split_name = sys.argv[1]
+    # group_index = sys.argv[2]
+    # simulate_with_predicted_best(split_name,
+    #                              group_index,
+    #                              param_path=os.path.join(PATH_TO_TESTING_REPORT,
+    #                                                      'cmaes_wrapper/validation/top_params_from_val.csv'))
+
+    pred_and_actual_cost_corr_dist('test',
+                                   base_dir=os.path.join(PATH_TO_TESTING_REPORT, 'cmaes_wrapper'),
+                                   prediction_file_name='actual_costs_and_prediction.csv')
+
+    # all_costs_prediction_vs_actual_cost(os.path.join(PATH_TO_TESTING_REPORT, 'cmaes_wrapper/validation/2'), 'actual_costs_and_prediction.csv')

@@ -5,15 +5,14 @@ import torch
 from src.utils.init_utils import seed_all, set_gpu_device, load_dataset, load_split
 
 from src.basic.constants import PATH_TO_TESTING_REPORT, PATH_TO_TRAINING_LOG, PATH_TO_FIGURES, MANUAL_SEED
-from src.basic.subject_group import SubjectGroup
-from src.basic.cost_type import CostType
 
 from src.models.extract_SC_feat import ExtractScFeatMLP
 from src.models.naive_net import NaiveNet
 from src.models.gnn.gcn import Gcn
 
-from src.utils.test_utils import check_all_good_params_costs_for_models_in, get_top_k_prediction, gnn_get_top_k_prediction, plot_top_k_distribution, top_k_prediction_vs_actual_cost, pred_and_actual_cost_corr_dist
+from src.utils.test_utils import check_all_good_params_costs_for_models_in, get_top_k_prediction, gnn_get_top_k_prediction, plot_top_k_distribution, all_costs_prediction_vs_actual_cost, pred_and_actual_cost_corr_dist
 from src.utils.SC_utils import df_to_tensor, get_path_to_group
+from src.utils.pMFM_utils import forward_simulation
 
 
 def load_naive_net_with_SC():

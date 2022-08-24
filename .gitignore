@@ -16,3 +16,5 @@ simulated_FCD/
 simulated_FC.csv
 simulated_FCD.csv
 top_100_params.csv
+training_iteration.txt
+cost_with_seed_*.txt

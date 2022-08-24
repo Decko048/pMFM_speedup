@@ -10,7 +10,7 @@ function submit_job {
     split_name=$1
     idx_in_split=$2
 
-    cmd_script="source deactivate; source activate pMFM_speedup-torch1.8; python /home/ftian/storage/pMFM_speedup/src/training/testing/compare_top_k_params.py ${split_name} ${idx_in_split}; source deactivate"
+    cmd_script="source deactivate; source activate pMFM_speedup-torch1.8; python /home/ftian/storage/pMFM_speedup/src/testing/compare_top_k_params.py ${split_name} ${idx_in_split}; source deactivate"
 
     job_path="/home/ftian/storage/pMFM_speedup/submit_to_sheduler/jobs/testing/compare_top_k_params/${split_name}_${idx_in_split}/"
     mkdir -p ${job_path}

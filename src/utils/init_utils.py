@@ -70,15 +70,6 @@ def shrink_dataset(ds, target_size_ratio):
 
     return shrunk_dataset
 
-def extract_param(split_name, group_index, param_index):
-    params_path = os.path.join(PATH_TO_DATASET, split_name, group_index, 'top_100_params.csv')
-    df = pd.read_csv(params_path, header=None)
-    param_with_cost = df.iloc[:, param_index]
-    cost = param_with_cost[:4]
-    param = param_with_cost.iloc[4:]
-    param.to_csv('param.csv', header=None, index=None)
-    cost.to_csv(f'param_cost_with_{split_name}_{group_index}.csv', header=None, index=None)
-
 import matplotlib.pyplot as plt
 import numpy as np
 

@@ -20,16 +20,17 @@ from src.models.naive_net import NaiveNet
 
 from src.utils.init_utils import load_split, set_gpu_device
 from src.basic.cost_type import CostType
-from src.basic.constants import PATH_TO_FIGURES, PATH_TO_PROJECT, PATH_TO_DATASET, NUM_GROUP_IN_SPLIT, TOTAL_COST_UPPER_BOUND
+from src.basic.constants import PATH_TO_TESTING_REPORT, PATH_TO_FIGURES, PATH_TO_PROJECT, PATH_TO_DATASET, NUM_GROUP_IN_SPLIT, TOTAL_COST_UPPER_BOUND
 from src.basic.param_performance import ParamPerformance
 # from src.models.ensemble.custom_voting import CustomVoting, voting_ensemble_models_in
 
 
-def pred_and_actual_cost_corr_dist(split_name: str, k: int = 10000):
+def pred_and_actual_cost_corr_dist(split_name: str,
+                                   base_dir=os.path.join(PATH_TO_TESTING_REPORT, 'cmaes_wrapper'),
+                                   prediction_file_name='actual_costs_and_prediction.csv'):
     """
-    plot the distribution of the correlation between top `k` prediction and their actual costs for all subject groups in `split_name`
+    plot the distribution of the correlation between prediction and their actual costs for all subject groups in `split_name`
     """
-    save_dir = os.path.join(PATH_TO_PROJECT, f'reports/testing')
 
     all_FC_CORR_corr = []
     all_FC_L1_corr = []
@@ -37,22 +38,19 @@ def pred_and_actual_cost_corr_dist(split_name: str, k: int = 10000):
     all_total_cost_corr = []
     for group_index in range(1, NUM_GROUP_IN_SPLIT[split_name] + 1):
         group_index = str(group_index)
-        FC_CORR_corr, FC_L1_corr, FCD_KS_corr, total_cost_corr = top_k_prediction_vs_actual_cost(split_name,
-                                                                                                 group_index,
-                                                                                                 k=k)
+
+        path_to_prediction_dir = os.path.join(base_dir, split_name, str(group_index))
+        FC_CORR_corr, FC_L1_corr, FCD_KS_corr, total_cost_corr = all_costs_prediction_vs_actual_cost(
+            path_to_prediction_dir, prediction_file_name)
         all_FC_CORR_corr.append(FC_CORR_corr)
         all_FC_L1_corr.append(FC_L1_corr)
         all_FCD_KS_corr.append(FCD_KS_corr)
         all_total_cost_corr.append(total_cost_corr)
 
-    plot_pred_and_actual_cost_corr_dist(all_total_cost_corr, save_dir,
-                                        f'{split_name}_top_{k}_pred_and_actual_total_cost_corr_dist')
-    plot_pred_and_actual_cost_corr_dist(all_FC_CORR_corr, save_dir,
-                                        f'{split_name}_top_{k}_pred_and_actual_FC_CORR_corr_dist')
-    plot_pred_and_actual_cost_corr_dist(all_FC_L1_corr, save_dir,
-                                        f'{split_name}_top_{k}_pred_and_actual_FC_L1_corr_dist')
-    plot_pred_and_actual_cost_corr_dist(all_FCD_KS_corr, save_dir,
-                                        f'{split_name}_top_{k}_pred_and_actual_FCD_KS_corr_dist')
+    plot_pred_and_actual_cost_corr_dist(all_total_cost_corr, base_dir, f'pred_and_actual_total_cost_corr_dist')
+    plot_pred_and_actual_cost_corr_dist(all_FC_CORR_corr, base_dir, f'pred_and_actual_FC_CORR_corr_dist')
+    plot_pred_and_actual_cost_corr_dist(all_FC_L1_corr, base_dir, f'pred_and_actual_FC_L1_corr_dist')
+    plot_pred_and_actual_cost_corr_dist(all_FCD_KS_corr, base_dir, f'pred_and_actual_FCD_KS_corr_dist')
 
 
 def plot_pred_and_actual_cost_corr_dist(all_corr, save_dir, file_name):
@@ -78,28 +76,24 @@ def keep_meaningful_only(actual_total_costs: pd.Series, predicted_total_costs: p
     return meaningful_actual_total_costs, meaningful_predicted_total_costs
 
 
-def top_k_prediction_vs_actual_cost(split_name, group_index, k=10000):
-    path_to_prediction_dir = os.path.join(PATH_TO_PROJECT, 'reports/testing/compare_top_k_params', split_name,
-                                          str(group_index))
-
+def all_costs_prediction_vs_actual_cost(path_to_prediction_dir, file_name):
+    path_to_prediction_file = os.path.join(path_to_prediction_dir, file_name)
     (actual_FC_CORR, actual_FC_L1, actual_FCD_KS,
      actual_total_costs), (predicted_FC_CORR, predicted_FC_L1, predicted_FCD_KS,
-                           predicted_total_costs) = get_actual_and_prediction(path_to_prediction_dir, k=k)
+                           predicted_total_costs) = get_actual_and_prediction(path_to_prediction_file)
 
-    FC_CORR_corr = plot_top_k_prediction_vs_actual_cost(predicted_FC_CORR, actual_FC_CORR, path_to_prediction_dir,
-                                                        f'top_{k}_prediction_vs_actual_FC_CORR')
-    FC_L1_corr = plot_top_k_prediction_vs_actual_cost(predicted_FC_L1, actual_FC_L1, path_to_prediction_dir,
-                                                      f'top_{k}_prediction_vs_actual_FC_L1')
-    FCD_KS_corr = plot_top_k_prediction_vs_actual_cost(predicted_FCD_KS, actual_FCD_KS, path_to_prediction_dir,
-                                                       f'top_{k}_prediction_vs_actual_FCD_KS')
-    total_cost_corr = plot_top_k_prediction_vs_actual_cost(predicted_total_costs, actual_total_costs,
-                                                           path_to_prediction_dir,
-                                                           f'top_{k}_prediction_vs_actual_total_cost')
+    FC_CORR_corr = plot_prediction_vs_actual_cost(predicted_FC_CORR, actual_FC_CORR, path_to_prediction_dir,
+                                                  'prediction_vs_actual_FC_CORR')
+    FC_L1_corr = plot_prediction_vs_actual_cost(predicted_FC_L1, actual_FC_L1, path_to_prediction_dir,
+                                                'prediction_vs_actual_FC_L1')
+    FCD_KS_corr = plot_prediction_vs_actual_cost(predicted_FCD_KS, actual_FCD_KS, path_to_prediction_dir,
+                                                 'prediction_vs_actual_FCD_KS')
+    total_cost_corr = plot_prediction_vs_actual_cost(predicted_total_costs, actual_total_costs, path_to_prediction_dir,
+                                                     f'prediction_vs_actual_total_cost')
     return FC_CORR_corr, FC_L1_corr, FCD_KS_corr, total_cost_corr
 
 
-def get_actual_and_prediction(path_to_prediction_dir, k=10000):
-    predicted_top_k_file_path = os.path.join(path_to_prediction_dir, f'predicted_top_{k}.csv')
+def get_actual_and_prediction(predicted_top_k_file_path):
     predicted_top_k_params = np.loadtxt(predicted_top_k_file_path, delimiter=',')
 
     actual_FC_CORR = pd.Series(predicted_top_k_params[0, :])
@@ -115,7 +109,7 @@ def get_actual_and_prediction(path_to_prediction_dir, k=10000):
                                                                                predicted_FCD_KS, predicted_total_costs)
 
 
-def plot_top_k_prediction_vs_actual_cost(predicted_costs, actual_costs, save_dir, file_name):
+def plot_prediction_vs_actual_cost(predicted_costs, actual_costs, save_dir, file_name):
     COUNT_N_MEANINGLESS = False
 
     assert (actual_costs.shape[0] == predicted_costs.shape[0])
