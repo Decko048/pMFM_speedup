@@ -1,4 +1,5 @@
 .vscode/
+._*
 __pycache__/
 notebooks/test/
 data/processed/
