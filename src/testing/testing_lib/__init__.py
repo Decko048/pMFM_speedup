@@ -4,7 +4,7 @@ import torch
 
 from src.utils.init_utils import seed_all, set_gpu_device, load_dataset, load_split
 
-from src.basic.constants import PATH_TO_TESTING_REPORT, PATH_TO_TRAINING_LOG, PATH_TO_FIGURES, MANUAL_SEED
+from src.basic.constants import PATH_TO_DATASET, PATH_TO_TESTING_REPORT, PATH_TO_TRAINING_LOG, PATH_TO_FIGURES, MANUAL_SEED
 
 from src.models.extract_SC_feat import ExtractScFeatMLP
 from src.models.naive_net import NaiveNet

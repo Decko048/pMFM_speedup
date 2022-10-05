@@ -3,7 +3,7 @@ import torch
 import numpy as np
 import pandas as pd
 
-from src.utils.CBIG_pMFM_basic_functions_HCP import CBIG_combined_cost_train, CBIG_mfm_multi_simulation, csv_matrix_read, bold2fcd, bold2fc, get_ks_cost_between, get_fc_corr_between
+from src.utils.CBIG_pMFM_basic_functions_HCP import CBIG_combined_cost_train, CBIG_mfm_multi_simulation, csv_matrix_read, bold2fcd, bold2fc, get_ks_cost_between, get_fc_corr_between  # noqa: E501
 from src.utils.SC_utils import get_path_to_group_SC
 from src.basic.constants import PATH_TO_DATASET
 
@@ -25,7 +25,7 @@ def forward_simulation(param_vectors, path_to_group: str, n_dup: int = 5):
 
 def get_simulated_fc_and_fcd(split_name, group_index, param_vectors, n_dup=5):
     """
-    Get simulated BOLD signal with the given parameter vectors and SC from the subject group indicated by `split_name` and `group_index`
+    Get simulated BOLD signal with the given parameter vectors and SC from the subject group indicated by `split_name` and `group_index` # noqa: E501
     """
     # get group SC matrix
     sc_mat_raw = csv_matrix_read(get_path_to_group_SC(split_name, group_index))
@@ -82,7 +82,7 @@ def get_FCD_KS_between_FCDs(all_FCDs):
 
 
 def extract_param(split_name, group_index, param_index, save_param=False):
-    params_path = os.path.join(PATH_TO_DATASET, split_name, group_index, 'top_100_params.csv')
+    params_path = os.path.join(PATH_TO_DATASET, split_name, group_index, f'{split_name}_{group_index}.csv')
     df = pd.read_csv(params_path, header=None)
     param_with_cost = df.iloc[:, param_index]
     cost = param_with_cost[:4]

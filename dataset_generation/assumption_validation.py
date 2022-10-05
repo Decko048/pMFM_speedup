@@ -181,9 +181,9 @@ def plot_cost_vs_SC_correlation(cost_type: CostType, param_folder_name):
     cost_and_SC_correlation.plot(x='SC_correlation', y=cost_type.name, kind='scatter', figsize=(20, 10), fontsize=16)
 
     plt.title(f'{cost_type.name} vs SC correlation (r={corr:.4f})', fontsize=19)
-    plt.xlabel(
-        f'SC correlation between subject groups (mean={SC_correlations_series.mean():.4f}, std={SC_correlations_series.std():.4f})',
-        fontsize=18)
+    plt.xlabel(f'SC correlation between subject groups (mean={SC_correlations_series.mean():.4f}, \
+            std={SC_correlations_series.std():.4f})',
+               fontsize=18)
     plt.ylabel(f'{cost_type.name} (mean={all_cost_series.mean():.4f}, std={all_cost_series.std():.4f})', fontsize=18)
     plt.savefig(os.path.join(save_dir, param_folder_name, f'{cost_type.name}_vs_SC_correlation.png'), dpi=400)
 
@@ -294,7 +294,7 @@ def check_swap_param_effect(path_to_file):
     )
     both_not_meaningful_count = total_cost_diff.where(lambda x: x == 0).count()
     print(
-        f'{both_not_meaningful_count} parameters with identical performance after swapping (most likely due to no meaningful time course being generated in either case)'
+        f'{both_not_meaningful_count} parameters with identical performance after swapping (most likely due to no meaningful time course being generated in either case)'  # noqa E501
     )
     both_meaningful_count = len(total_cost_diff) - much_worse_count - much_better_count - both_not_meaningful_count
     fig, ax = plt.subplots(1, 4, figsize=(19, 4))
@@ -361,11 +361,14 @@ def save_np_array(array, save_dir, file_name):
 
 
 def debug_simulation():
-    param = extract_param('train', '1', 0)
+    param = pd.read_csv('param_2.csv', header=None).iloc[:, 0]
+    # param = extract_param('train', '1', 0)
+
     param = matrix_to_np(param)
     param = np.expand_dims(param, axis=1)
     path_to_group = get_path_to_group('train', '1')
-    forward_simulation(param, path_to_group)
+    fc_corr_cost, fc_L1_cost, fcd_cost, total_cost = forward_simulation(param, path_to_group)
+    print(fc_corr_cost, fc_L1_cost, fcd_cost, total_cost)
 
 
 if __name__ == '__main__':

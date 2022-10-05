@@ -47,10 +47,11 @@ def pred_and_actual_cost_corr_dist(split_name: str,
         all_FCD_KS_corr.append(FCD_KS_corr)
         all_total_cost_corr.append(total_cost_corr)
 
-    plot_pred_and_actual_cost_corr_dist(all_total_cost_corr, base_dir, f'pred_and_actual_total_cost_corr_dist')
-    plot_pred_and_actual_cost_corr_dist(all_FC_CORR_corr, base_dir, f'pred_and_actual_FC_CORR_corr_dist')
-    plot_pred_and_actual_cost_corr_dist(all_FC_L1_corr, base_dir, f'pred_and_actual_FC_L1_corr_dist')
-    plot_pred_and_actual_cost_corr_dist(all_FCD_KS_corr, base_dir, f'pred_and_actual_FCD_KS_corr_dist')
+    save_dir = os.path.join(base_dir, split_name)
+    plot_pred_and_actual_cost_corr_dist(all_total_cost_corr, save_dir, 'pred_and_actual_total_cost_corr_dist')
+    plot_pred_and_actual_cost_corr_dist(all_FC_CORR_corr, save_dir, 'pred_and_actual_FC_CORR_corr_dist')
+    plot_pred_and_actual_cost_corr_dist(all_FC_L1_corr, save_dir, 'pred_and_actual_FC_L1_corr_dist')
+    plot_pred_and_actual_cost_corr_dist(all_FCD_KS_corr, save_dir, 'pred_and_actual_FCD_KS_corr_dist')
 
 
 def plot_pred_and_actual_cost_corr_dist(all_corr, save_dir, file_name):
@@ -59,7 +60,7 @@ def plot_pred_and_actual_cost_corr_dist(all_corr, save_dir, file_name):
     all_corr.to_csv(os.path.join(save_dir, f'{file_name}.csv'), index=False, header=False)
 
     histplot(all_corr)
-    plt.title(f'distribution of correlation between prediction and their actual costs')
+    plt.title('distribution of correlation between prediction and their actual costs')
     plt.xlabel(
         f'correlation between prediction and actual costs\n(mean={all_corr.mean():.4f}, std={all_corr.std():.4f})')
     plt.savefig(os.path.join(save_dir, f'{file_name}.png'), dpi=400)
@@ -89,7 +90,7 @@ def all_costs_prediction_vs_actual_cost(path_to_prediction_dir, file_name):
     FCD_KS_corr = plot_prediction_vs_actual_cost(predicted_FCD_KS, actual_FCD_KS, path_to_prediction_dir,
                                                  'prediction_vs_actual_FCD_KS')
     total_cost_corr = plot_prediction_vs_actual_cost(predicted_total_costs, actual_total_costs, path_to_prediction_dir,
-                                                     f'prediction_vs_actual_total_cost')
+                                                     'prediction_vs_actual_total_cost')
     return FC_CORR_corr, FC_L1_corr, FCD_KS_corr, total_cost_corr
 
 

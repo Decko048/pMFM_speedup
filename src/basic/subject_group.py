@@ -65,8 +65,12 @@ class SubjectGroup:
         top_k_params = np.stack(top_k_params, axis=1)
         return top_k_params
 
-    def sample_k_params(self, k):
-        sampled_params_with_performances = [(p.param, p.performance) for p in sample(self.param_performances, k)]
+    def get_meaningful_params(self):
+        return [param for param in self.param_performances if param.is_meaningful]
+
+    def sample_k_params(self, k, use_meaningful_only=False):
+        population = self.param_performances if not use_meaningful_only else self.get_meaningful_params()
+        sampled_params_with_performances = [(p.param, p.performance) for p in sample(population, k)]
         sampled_params_with_performances = list(zip(*sampled_params_with_performances))
         params = torch.stack(sampled_params_with_performances[0], dim=1)
         performances = torch.stack(sampled_params_with_performances[1], dim=1)

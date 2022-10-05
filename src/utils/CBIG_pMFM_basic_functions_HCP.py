@@ -412,7 +412,8 @@ def CBIG_mfm_rfMRI_ode(S_E, S_I, J_I, parameter, sc_mat):
     # dS_I (noise is added at the forward simulation step)
     dS_I = -S_I / tau_I + r_I
 
-    if torch.isnan(dS_E).any() or torch.isnan(dS_I).any():
+    print('r_E:', r_E)
+    if torch.isnan(dS_E).any() or torch.isnan(dS_I).any() or torch.isnan(r_E).any() or torch.isnan(r_I).any():
         # dS_E = torch.zeros(S_E.shape)
         # dS_I = torch.zeros(S_I.shape)
         print('NaN!!!!!')
@@ -420,6 +421,7 @@ def CBIG_mfm_rfMRI_ode(S_E, S_I, J_I, parameter, sc_mat):
         print('dS_I:', dS_I)
         print('r_E:', r_E)
         print('r_I:', r_I)
+        return
 
     return dS_E, dS_I, r_E
 
