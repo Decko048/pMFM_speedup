@@ -1,0 +1,32 @@
+
+======================================================================================
+			Resource Usage on 2022-08-07 18:56:14.516414:
+
+	JobId: 2559468.headnode
+	JobName: naive_net_no_SC_use_coef
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:49
+	Memory Requested: 30gb		Memory Used: 3284132kb
+						Vmem Used: 3284260kb
+	Walltime requested: 25:00:00		Walltime Used: 00:02:30
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=31457280kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-08-08 00:48:32.222976:
+
+	JobId: 2559470.headnode
+	JobName: naive_net_no_SC_use_coef
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 22:41:18
+	Memory Requested: 30gb		Memory Used: 9165656kb
+						Vmem Used: 9165656kb
+	Walltime requested: 25:00:00		Walltime Used: 05:44:05
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=31457280kb:ngpus=1)
+
+======================================================================================

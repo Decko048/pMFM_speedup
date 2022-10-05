@@ -1,0 +1,16 @@
+
+======================================================================================
+			Resource Usage on 2022-08-08 07:29:55.632050:
+
+	JobId: 2559906.headnode
+	JobName: simulated_FCD_with_diff_params
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 06:43:00
+	Memory Requested: 8gb		Memory Used: 3063276kb
+						Vmem Used: 3063276kb
+	Walltime requested: 15:00:00		Walltime Used: 06:44:39
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=8388608kb:ngpus=1)
+
+======================================================================================

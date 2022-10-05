@@ -1,0 +1,4 @@
+DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.
+/mnt/isilon/CSC1/Yeolab/Users/ftian/pMFM_speedup/dataset_generation/CBIG_pMFM_basic_functions_HCP.py:1076: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at  /opt/conda/conda-bld/pytorch_1614378083779/work/aten/src/ATen/native/IndexingUtils.h:30.)
+  bold_fc = torch_corr(bold_tempm[:, i:i + window_size])
+DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.

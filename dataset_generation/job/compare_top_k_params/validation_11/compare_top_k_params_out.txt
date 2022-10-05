@@ -1,0 +1,5 @@
+Number of cuda devices: 1
+My device: cuda:0
+SC loaded for validation 11!
+10000 params loaded for validation 11!
+MSE loss: 1.0688557624816895

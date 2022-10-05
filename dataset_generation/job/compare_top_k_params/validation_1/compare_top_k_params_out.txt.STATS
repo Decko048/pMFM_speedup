@@ -1,0 +1,48 @@
+
+======================================================================================
+			Resource Usage on 2022-07-12 21:39:03.539599:
+
+	JobId: 2510276.headnode
+	JobName: compare_top_k_params
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:00
+	Memory Requested: 20gb		Memory Used: 0b
+						Vmem Used: 0b
+	Walltime requested: 01:00:00		Walltime Used: 00:00:15
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=20971520kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-12 21:40:59.136204:
+
+	JobId: 2510277.headnode
+	JobName: compare_top_k_params
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:00
+	Memory Requested: 20gb		Memory Used: 0b
+						Vmem Used: 0b
+	Walltime requested: 01:00:00		Walltime Used: 00:00:24
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=20971520kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-12 21:46:10.387587:
+
+	JobId: 2510278.headnode
+	JobName: compare_top_k_params
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:00
+	Memory Requested: 20gb		Memory Used: 0b
+						Vmem Used: 0b
+	Walltime requested: 01:00:00		Walltime Used: 00:00:23
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=20971520kb:ngpus=1)
+
+======================================================================================

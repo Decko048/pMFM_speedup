@@ -1,0 +1,176 @@
+
+======================================================================================
+			Resource Usage on 2022-07-12 15:06:36.834068:
+
+	JobId: 2509809.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 10:35:41
+	Memory Requested: 90gb		Memory Used: 82763976kb
+						Vmem Used: 82763976kb
+	Walltime requested: 15:00:00		Walltime Used: 02:43:24
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-12 17:48:34.176886:
+
+	JobId: 2510039.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 09:33:00
+	Memory Requested: 90gb		Memory Used: 63918148kb
+						Vmem Used: 63918148kb
+	Walltime requested: 11:00:00		Walltime Used: 02:25:58
+
+	Execution Nodes Used: (gpuserver1:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-12 18:47:49.311229:
+
+	JobId: 2510218.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 01:55:16
+	Memory Requested: 90gb		Memory Used: 61699092kb
+						Vmem Used: 61726848kb
+	Walltime requested: 11:00:00		Walltime Used: 00:31:43
+
+	Execution Nodes Used: (gpuserver1:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-12 23:08:24.063986:
+
+	JobId: 2510219.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 16:10:14
+	Memory Requested: 90gb		Memory Used: 46314760kb
+						Vmem Used: 46318320kb
+	Walltime requested: 11:00:00		Walltime Used: 04:07:07
+
+	Execution Nodes Used: (gpuserver1:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-12 23:44:22.524755:
+
+	JobId: 2510315.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 271
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:00
+	Memory Requested: 90gb		Memory Used: 0b
+						Vmem Used: 0b
+	Walltime requested: 11:00:00		Walltime Used: 00:00:10
+
+	Execution Nodes Used: (gpuserver1:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-13 06:13:52.988500:
+
+	JobId: 2510316.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 22:10:54
+	Memory Requested: 90gb		Memory Used: 44817240kb
+						Vmem Used: 44817240kb
+	Walltime requested: 25:00:00		Walltime Used: 06:29:05
+
+	Execution Nodes Used: (gpuserver1:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-13 18:57:17.310872:
+
+	JobId: 2510374.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 33:09:25
+	Memory Requested: 90gb		Memory Used: 73728760kb
+						Vmem Used: 73728760kb
+	Walltime requested: 25:00:00		Walltime Used: 08:24:22
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-17 08:01:52.002378:
+
+	JobId: 2512932.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 29:37:35
+	Memory Requested: 90gb		Memory Used: 45141704kb
+						Vmem Used: 45141704kb
+	Walltime requested: 25:00:00		Walltime Used: 07:30:12
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-27 05:54:31.721407:
+
+	JobId: 2523841.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 96:28:56
+	Memory Requested: 90gb		Memory Used: 72444516kb
+						Vmem Used: 72444516kb
+	Walltime requested: 30:00:00		Walltime Used: 25:14:04
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-27 07:26:52.922516:
+
+	JobId: 2527457.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 04:07:39
+	Memory Requested: 90gb		Memory Used: 53072408kb
+						Vmem Used: 53096220kb
+	Walltime requested: 30:00:00		Walltime Used: 01:03:41
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-07-27 19:28:11.054579:
+
+	JobId: 2527472.headnode
+	JobName: gcn_with_mlp
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 35:35:07
+	Memory Requested: 90gb		Memory Used: 55750432kb
+						Vmem Used: 55750432kb
+	Walltime requested: 15:00:00		Walltime Used: 09:00:20
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=94371840kb:ngpus=1)
+
+======================================================================================

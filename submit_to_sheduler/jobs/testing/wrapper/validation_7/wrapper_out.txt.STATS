@@ -1,0 +1,16 @@
+
+======================================================================================
+			Resource Usage on 2022-09-19 23:25:46.989414:
+
+	JobId: 2682073.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:05:44
+	Memory Requested: 20gb		Memory Used: 3190156kb
+						Vmem Used: 3190156kb
+	Walltime requested: 01:00:00		Walltime Used: 00:07:48
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=20971520kb:ngpus=1)
+
+======================================================================================

@@ -1,0 +1,64 @@
+
+======================================================================================
+			Resource Usage on 2022-08-08 00:06:19.617542:
+
+	JobId: 2559521.headnode
+	JobName: simulated_FCD_with_diff_SC
+	Exit Status: 271
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 01:10:35
+	Memory Requested: 8gb		Memory Used: 2908828kb
+						Vmem Used: 2908828kb
+	Walltime requested: 10:00:00		Walltime Used: 01:12:43
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=8388608kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-08-08 00:17:26.538096:
+
+	JobId: 2559890.headnode
+	JobName: simulated_FCD_with_diff_SC
+	Exit Status: 271
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:17
+	Memory Requested: 8gb		Memory Used: 2872396kb
+						Vmem Used: 2872396kb
+	Walltime requested: 10:00:00		Walltime Used: 00:01:00
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=8388608kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-08-08 00:23:57.117546:
+
+	JobId: 2559896.headnode
+	JobName: simulated_FCD_with_diff_SC
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:02:00
+	Memory Requested: 8gb		Memory Used: 2868892kb
+						Vmem Used: 2868892kb
+	Walltime requested: 10:00:00		Walltime Used: 00:02:54
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=8388608kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-08-08 03:37:38.840410:
+
+	JobId: 2559898.headnode
+	JobName: simulated_FCD_with_diff_SC
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 03:05:03
+	Memory Requested: 8gb		Memory Used: 2966732kb
+						Vmem Used: 2966732kb
+	Walltime requested: 10:00:00		Walltime Used: 03:06:27
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=8388608kb:ngpus=1)
+
+======================================================================================

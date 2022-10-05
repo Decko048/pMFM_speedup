@@ -1,0 +1,19 @@
+Number of cuda devices: 1
+My device: cuda:0
+train dataset loaded!
+validation dataset loaded!
+Number of finished trials: 100
+Best trial:
+  Trial number: 4
+  Value: 0.06918008625507355
+  Params: 
+    num_of_extract_SC_feat_layers: 4
+    extract_SC_feat_output_dim_l0: 4
+    extract_SC_feat_output_dim_l1: 42
+    extract_SC_feat_output_dim_l2: 4
+    extract_SC_feat_output_dim_l3: 32
+    num_of_naive_net_layers: 4
+    naive_net_output_dim_l0: 241
+    naive_net_output_dim_l1: 11
+    naive_net_output_dim_l2: 110
+    naive_net_output_dim_l3: 147
