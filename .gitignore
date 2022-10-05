@@ -1,7 +1,5 @@
 .vscode/
-._*
 __pycache__/
-*.pickle
 notebooks/test/
 data/processed/
 tmp/
