@@ -1,0 +1,10 @@
+naive_net_output_dims:
+- 50
+- 44
+- 4
+- 133
+- 31
+- 5
+- 4
+- 244
+num_of_naive_net_layers: 8

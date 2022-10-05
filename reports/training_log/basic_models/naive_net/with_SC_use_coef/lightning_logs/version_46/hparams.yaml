@@ -1,0 +1,12 @@
+extract_SC_feat_output_dims:
+- 4
+- 71
+- 39
+naive_net_output_dims:
+- 5
+- 237
+- 119
+- 26
+- 35
+num_of_extract_SC_feat_layers: 3
+num_of_naive_net_layers: 5

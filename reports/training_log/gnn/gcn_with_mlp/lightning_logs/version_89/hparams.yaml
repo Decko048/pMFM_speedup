@@ -1,0 +1,12 @@
+gcn_output_dims:
+- 41
+mlp_output_dims:
+- 343
+- 7
+- 8
+- 86
+- 450
+- 33
+- 13
+num_of_gcn_layers: 1
+num_of_mlp_layers: 7
