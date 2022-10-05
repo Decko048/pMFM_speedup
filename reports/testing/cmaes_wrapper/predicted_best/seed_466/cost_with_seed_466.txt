@@ -1,0 +1,12 @@
+******** Generation: 500 ********
+sigma: 0.1761238413044255
+Best parameter set: 8
+Best total cost: 0.6213334
+FC correlation cost: 0.29968664
+FC L1 cost: 0.1540477
+FCD KS statistics cost: 0.1675991
+wEE search range: 1, 10
+wEI search range: 1, 5
+Elapsed time for this evolution is : 0.008505582809448242
+******************************************
+**

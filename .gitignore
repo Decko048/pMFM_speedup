@@ -6,6 +6,3 @@ notebooks/test/
 data/processed/
 tmp/
 src/old_src
-top_100_params.csv
-training_iteration.txt
-cost_with_seed_*.txt
