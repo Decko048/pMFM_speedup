@@ -15,7 +15,7 @@ from src.models.naive_net import NaiveNet, objective_naive_net_no_SC, objective_
 from src.models.gnn.gnn_param_dataset import GnnParamDataset
 from src.models.gnn.gcn import Gcn, objective_gcn
 
-from src.utils.training_utils import tune, resume_tuning, tune_gnn, resume_tuning_gnn
+from src.utils.training_utils import tune, tune_gnn
 from src.utils.test_utils import check_all_good_params_costs_for_models_in, get_top_k_prediction, gnn_get_top_k_prediction, plot_top_k_distribution, all_costs_prediction_vs_actual_cost, pred_and_actual_cost_corr_dist
 
 seed_all()

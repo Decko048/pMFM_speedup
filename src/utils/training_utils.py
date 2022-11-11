@@ -50,8 +50,11 @@ def dataset2loader(dataset, shuffle: bool):
     PIN_MEMORY = True
 
     # Create data loaders for our datasets; should shuffle for training, but not for validation
-    loader = torch.utils.data.DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=shuffle, \
-                                                  num_workers=NUM_WORKERS, pin_memory=PIN_MEMORY)
+    loader = torch.utils.data.DataLoader(dataset,
+                                         batch_size=BATCH_SIZE,
+                                         shuffle=shuffle,
+                                         num_workers=NUM_WORKERS,
+                                         pin_memory=PIN_MEMORY)
     return loader
 
 
@@ -62,30 +65,7 @@ def tune(objective,
          timeout=36000,
          save_dir=PATH_TO_TRAINING_LOG,
          use_coef=False):
-    Path(save_dir).mkdir(parents=True, exist_ok=True)
-    if train_ds is None or validation_ds is None:
-        train_ds, validation_ds = load_split('train', use_coef=use_coef), load_split('validation', use_coef=use_coef)
 
-    training_loader = dataset2loader(train_ds, shuffle=True)
-    validation_loader = dataset2loader(validation_ds, shuffle=False)
-    sampler = TPESampler(seed=MANUAL_SEED)
-    study = optuna.create_study(direction="minimize", sampler=sampler)
-    study.optimize(lambda trial: objective(trial, training_loader, validation_loader, save_dir),
-                   n_trials=n_trials,
-                   timeout=timeout)
-
-    print_best_trial(study)
-    study_file_path = os.path.join(save_dir, "study.pkl")
-    pickle.dump(study, open(study_file_path, "wb"))
-
-
-def resume_tuning(objective,
-                  train_ds=None,
-                  validation_ds=None,
-                  n_trials=100,
-                  timeout=36000,
-                  save_dir=PATH_TO_TRAINING_LOG,
-                  use_coef=False):
     if train_ds is None or validation_ds is None:
         train_ds, validation_ds = load_split('train', use_coef=use_coef), load_split('validation', use_coef=use_coef)
 
@@ -93,7 +73,13 @@ def resume_tuning(objective,
     validation_loader = dataset2loader(validation_ds, shuffle=False)
 
     study_file_path = os.path.join(save_dir, "study.pkl")
-    study = pickle.load(open(study_file_path, "rb"))
+    if os.path.isfile(study_file_path):
+        study = pickle.load(open(study_file_path, "rb"))
+    else:
+        Path(save_dir).mkdir(parents=True, exist_ok=True)
+        sampler = TPESampler(seed=MANUAL_SEED)
+        study = optuna.create_study(direction="minimize", sampler=sampler)
+
     study.optimize(lambda trial: objective(trial, training_loader, validation_loader, save_dir),
                    n_trials=n_trials,
                    timeout=timeout)
@@ -108,36 +94,15 @@ def dataset2loader_gnn(dataset, shuffle: bool):
     PIN_MEMORY = True
 
     # Create data loaders for our gnn datasets; should shuffle for training, but not for validation
-    loader = GnnDataLoader(dataset, batch_size=BATCH_SIZE, shuffle=shuffle, \
-                                                  num_workers=NUM_WORKERS, pin_memory=PIN_MEMORY)
+    loader = GnnDataLoader(dataset,
+                           batch_size=BATCH_SIZE,
+                           shuffle=shuffle,
+                           num_workers=NUM_WORKERS,
+                           pin_memory=PIN_MEMORY)
     return loader
 
 
 def tune_gnn(objective, train_ds=None, validation_ds=None, n_trials=100, timeout=36000, save_dir=PATH_TO_TRAINING_LOG):
-    Path(save_dir).mkdir(parents=True, exist_ok=True)
-    if train_ds is None or validation_ds is None:
-        train_ds, validation_ds = GnnParamDataset('train'), GnnParamDataset('validation')
-
-    training_loader = dataset2loader_gnn(train_ds, shuffle=True)
-    validation_loader = dataset2loader_gnn(validation_ds, shuffle=False)
-
-    sampler = TPESampler(seed=MANUAL_SEED)
-    study = optuna.create_study(direction="minimize", sampler=sampler)
-    study.optimize(lambda trial: objective(trial, training_loader, validation_loader, save_dir),
-                   n_trials=n_trials,
-                   timeout=timeout)
-
-    print_best_trial(study)
-    study_file_path = os.path.join(save_dir, "study.pkl")
-    pickle.dump(study, open(study_file_path, "wb"))
-
-
-def resume_tuning_gnn(objective,
-                      train_ds=None,
-                      validation_ds=None,
-                      n_trials=100,
-                      timeout=36000,
-                      save_dir=PATH_TO_TRAINING_LOG):
     if train_ds is None or validation_ds is None:
         train_ds, validation_ds = GnnParamDataset('train'), GnnParamDataset('validation')
 
@@ -145,7 +110,13 @@ def resume_tuning_gnn(objective,
     validation_loader = dataset2loader_gnn(validation_ds, shuffle=False)
 
     study_file_path = os.path.join(save_dir, "study.pkl")
-    study = pickle.load(open(study_file_path, "rb"))
+    if os.path.isfile(study_file_path):
+        study = pickle.load(open(study_file_path, "rb"))
+    else:
+        Path(save_dir).mkdir(parents=True, exist_ok=True)
+        sampler = TPESampler(seed=MANUAL_SEED)
+        study = optuna.create_study(direction="minimize", sampler=sampler)
+
     study.optimize(lambda trial: objective(trial, training_loader, validation_loader, save_dir),
                    n_trials=n_trials,
                    timeout=timeout)

@@ -47,8 +47,7 @@ def split_subjects(path_to_all_subject_list):
 
 
 if __name__ == '__main__':
-    # There's no need to re-run this script
-
+    # There's no need to re-run this script if the subject grouping is already generated
+    path_to_all_subject_list = './all_subject_list.txt'
+    split_subjects(path_to_all_subject_list)
     pass
-    # path_to_all_subject_list = './all_subject_list.txt'
-    # split_subjects(path_to_all_subject_list)
