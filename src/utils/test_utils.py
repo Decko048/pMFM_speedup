@@ -1,6 +1,5 @@
 import os
 import sys
-from tokenize import group
 from pytorch_lightning import LightningModule
 import torch
 import numpy as np
@@ -236,7 +235,7 @@ def get_all_subject_group_top_k(split_name: str, k: int = 100):
         np.savetxt(top_k_file_path, top_k_params, delimiter=',')
 
 
-def test_model(model, test_ds, save_dir=None):
+def test_model(model, test_ds):
     """
     test model's performance on the given dataset (e.g. validation or test dataset)
     """
@@ -252,7 +251,7 @@ def test_model(model, test_ds, save_dir=None):
     with torch.no_grad():
         model.eval()
         for X_batch, y_batch in test_loader:
-            y_test.extend(y_batch.cpu().numpy())
+            y_test.append(y_batch.cpu())
 
             if isinstance(X_batch, list):
                 batch_SC, batch_params = X_batch
@@ -262,28 +261,18 @@ def test_model(model, test_ds, save_dir=None):
                 X_batch = X_batch.to(model.device)
 
             y_test_pred = model(X_batch)
-            _, y_pred_batch = torch.max(y_test_pred, dim=1)
-            y_pred.extend(y_pred_batch.cpu().numpy())
+            y_pred.append(y_test_pred.cpu())
 
     # metrics
-    precision = precision_score(y_test, y_pred)
-    recall = recall_score(y_test, y_pred)
-    f1 = 2 * precision * recall / (precision + recall) if precision and recall else 0
-    accuracy = accuracy_score(y_test, y_pred)
-    print("\nprecision     |     recall      |       f1       |     accuracy    ")
-    print(f"{precision:.7f}\t{recall:.7f}\t{f1:.7f}\t{accuracy:.7f}")
-
-    if save_dir:
-        data = [[precision, recall, f1, accuracy]]
-        df = pd.DataFrame(data, columns=['precision', 'recall', 'f1', 'accuracy'])
-        df.to_csv(os.path.join(save_dir, 'metrics.csv'), index=False)
-        writer = SummaryWriter(log_dir=save_dir)
-        writer.add_scalar('precision', precision, 0)
-        writer.add_scalar('recall', recall, 0)
-        writer.add_scalar('f1', f1, 0)
-        writer.add_scalar('acc', accuracy, 0)
+    y_pred = torch.cat(y_pred, dim=0)
+    y_test = torch.cat(y_test, dim=0)
+    loss = mse_loss(y_pred, y_test)
+    print(f'MSE loss: {loss}')
 
 
+################################################################
+# Below are utils functions for the classfication task
+################################################################
 class GoodParamCounter():
 
     def __init__(self, filter=lambda x: x.is_all_GOOD):

@@ -1,0 +1,192 @@
+
+======================================================================================
+			Resource Usage on 2022-09-10 00:45:50.157735:
+
+	JobId: 2639368.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 1			NCPUs Used: 1
+						CPU Time Used: 00:00:03
+	Memory Requested: 10485760kb		Memory Used: 1998560kb
+						Vmem Used: 1998560kb
+	Walltime requested: 00:20:00		Walltime Used: 00:03:55
+
+	Execution Nodes Used: (node3:ncpus=1:mem=10485760kb)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-10 00:51:21.741006:
+
+	JobId: 2639370.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:00
+	Memory Requested: 8gb		Memory Used: 0b
+						Vmem Used: 0b
+	Walltime requested: 00:20:00		Walltime Used: 00:02:00
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=8388608kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-10 00:53:35.080448:
+
+	JobId: 2639371.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:37
+	Memory Requested: 8gb		Memory Used: 2953184kb
+						Vmem Used: 2953184kb
+	Walltime requested: 00:20:00		Walltime Used: 00:00:56
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=8388608kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-10 01:01:20.097778:
+
+	JobId: 2639373.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:03:10
+	Memory Requested: 16gb		Memory Used: 2945756kb
+						Vmem Used: 2945756kb
+	Walltime requested: 01:00:00		Walltime Used: 00:05:02
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-10 02:15:52.523532:
+
+	JobId: 2639375.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 01:07:24
+	Memory Requested: 16gb		Memory Used: 2954832kb
+						Vmem Used: 2954832kb
+	Walltime requested: 03:00:00		Walltime Used: 01:09:48
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-11 17:52:19.694877:
+
+	JobId: 2639431.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:01:53
+	Memory Requested: 16gb		Memory Used: 2951992kb
+						Vmem Used: 2951992kb
+	Walltime requested: 01:00:00		Walltime Used: 00:02:13
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-20 23:10:58.748892:
+
+	JobId: 2690889.headnode
+	JobName: wrapper
+	Exit Status: 271
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:10:01
+	Memory Requested: 16gb		Memory Used: 3219124kb
+						Vmem Used: 3219124kb
+	Walltime requested: 01:00:00		Walltime Used: 00:03:55
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-20 23:13:33.210361:
+
+	JobId: 2690887.headnode
+	JobName: wrapper
+	Exit Status: 271
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 01:55:31
+	Memory Requested: 16gb		Memory Used: 3262896kb
+						Vmem Used: 3262896kb
+	Walltime requested: 01:00:00		Walltime Used: 00:31:55
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-20 23:22:13.983958:
+
+	JobId: 2690888.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 01:59:19
+	Memory Requested: 16gb		Memory Used: 3210660kb
+						Vmem Used: 3210660kb
+	Walltime requested: 01:00:00		Walltime Used: 00:32:57
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-20 23:25:24.506475:
+
+	JobId: 2690891.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:35:27
+	Memory Requested: 16gb		Memory Used: 3178160kb
+						Vmem Used: 3178160kb
+	Walltime requested: 01:00:00		Walltime Used: 00:11:40
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-20 23:42:09.211917:
+
+	JobId: 2690892.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:43:49
+	Memory Requested: 16gb		Memory Used: 3155140kb
+						Vmem Used: 3155140kb
+	Walltime requested: 01:00:00		Walltime Used: 00:13:59
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-09-20 23:43:55.010588:
+
+	JobId: 2690893.headnode
+	JobName: wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:39:21
+	Memory Requested: 16gb		Memory Used: 3153704kb
+						Vmem Used: 3153704kb
+	Walltime requested: 01:00:00		Walltime Used: 00:12:17
+
+	Execution Nodes Used: (gpuserver2:ncpus=4:mem=16777216kb:ngpus=1)
+
+======================================================================================

@@ -10,7 +10,7 @@ import csv
 import pandas as pd
 from torch import optim
 
-sys.path.insert(0, '/home/ftian/storage/pMFM_speedup/')
+sys.path.insert(1, '/home/ftian/storage/pMFM_speedup/')
 from src.testing.testing_lib import MANUAL_SEED, load_split, load_naive_net_no_SC, PATH_TO_TESTING_REPORT, df_to_tensor, get_path_to_group, forward_simulation, all_costs_prediction_vs_actual_cost, pred_and_actual_cost_corr_dist  # noqa: E501, F401, E402
 from src.utils.CBIG_pMFM_basic_functions_HCP import CBIG_combined_cost_train  # noqa: E402
 

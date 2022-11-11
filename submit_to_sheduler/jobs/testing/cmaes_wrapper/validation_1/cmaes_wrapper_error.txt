@@ -1,2 +1,0 @@
-DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.
-Global seed set to 5

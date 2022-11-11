@@ -1,6 +1,6 @@
 import sys
 
-sys.path.insert(0, '/home/ftian/storage/pMFM_speedup/')
+sys.path.insert(1, '/home/ftian/storage/pMFM_speedup/')
 from src.testing.testing_lib import *
 
 

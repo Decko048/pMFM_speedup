@@ -1,0 +1,7 @@
+DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.
+Global seed set to 5
+/home/ftian/storage/pMFM_speedup/src/utils/CBIG_pMFM_basic_functions_HCP.py:645: UserWarning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead. (Triggered internally at  /opt/conda/conda-bld/pytorch_1614378083779/work/aten/src/ATen/native/IndexingUtils.h:30.)
+  cor_temp = bold_fc[fc_maskm]
+/home/ftian/storage/pMFM_speedup/src/utils/CBIG_pMFM_basic_functions_HCP.py:676: RuntimeWarning: invalid value encountered in true_divide
+  fcd_histcum_ave = fcd_histcum_temp / fcd_histcum_num
+DeprecationWarning: 'source deactivate' is deprecated. Use 'conda deactivate'.

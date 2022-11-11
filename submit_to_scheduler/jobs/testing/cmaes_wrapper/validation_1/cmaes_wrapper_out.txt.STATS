@@ -1,0 +1,32 @@
+
+======================================================================================
+			Resource Usage on 2022-08-23 19:34:33.016780:
+
+	JobId: 2597138.headnode
+	JobName: cmaes_wrapper
+	Exit Status: 0
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:00:00
+	Memory Requested: 20gb		Memory Used: 0b
+						Vmem Used: 0b
+	Walltime requested: 01:00:00		Walltime Used: 00:00:17
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=20971520kb:ngpus=1)
+
+======================================================================================
+
+======================================================================================
+			Resource Usage on 2022-08-23 19:52:17.812443:
+
+	JobId: 2597143.headnode
+	JobName: cmaes_wrapper
+	Exit Status: 271
+	NCPUs Requested: 4			NCPUs Used: 4
+						CPU Time Used: 00:02:04
+	Memory Requested: 20gb		Memory Used: 7019144kb
+						Vmem Used: 7019144kb
+	Walltime requested: 01:00:00		Walltime Used: 00:15:48
+
+	Execution Nodes Used: (gpuserver3:ncpus=4:mem=20971520kb:ngpus=1)
+
+======================================================================================
