@@ -11,21 +11,15 @@ import pandas as pd
 from torch import optim
 
 sys.path.insert(1, '/home/ftian/storage/pMFM_speedup/')
+from src.basic.constants import NUM_REGION  # noqa: E402
 from src.testing.testing_lib import MANUAL_SEED, load_split, load_naive_net_no_SC, PATH_TO_TESTING_REPORT, df_to_tensor, get_path_to_group, forward_simulation, all_costs_prediction_vs_actual_cost, pred_and_actual_cost_corr_dist  # noqa: E501, F401, E402
 from src.utils.CBIG_pMFM_basic_functions_HCP import CBIG_combined_cost_train  # noqa: E402
 
 ################################################################
-# Hybrid wrapper using CMA-ES with pMFM and gradient descent with DL model
-################################################################
-
-
-def hybrid_wrapper(path_to_group, random_seed, alternating_iters=[20, 30, 20]):
-    pass
-
-
-################################################################
 # CMA-ES Wrapper using pMFM
 ################################################################
+
+
 def CBIG_mfm_optimization_desikan_main(path_to_group, random_seed, input_param):
     '''
     This function is to implement the optimization processes of mean field model.
@@ -289,18 +283,20 @@ def save_top_k_param(all_param, file_path, k=1000):
     np.savetxt(file_path, top_k_param, delimiter=',')
 
 
-def cmaes_wrapper_use_coef(SC_path,
-                           myelin_path,
+def cmaes_wrapper_use_coef(myelin_path,
                            gradient_path,
+                           SC_path=None,
                            random_seed=MANUAL_SEED,
                            dl_model=load_naive_net_no_SC(),
                            output_dir=os.path.join(PATH_TO_TESTING_REPORT, 'cmaes_wrapper/predicted_best'),
                            output_file='predicted_best.csv'):
 
     output_dir = os.path.join(output_dir, f'seed_{random_seed}')
-    SC = pd.read_csv(SC_path, header=None)
-    SC = df_to_tensor(SC)
-
+    if SC_path is not None:
+        SC = pd.read_csv(SC_path, header=None)
+        SC = df_to_tensor(SC)
+    else:
+        SC = None
     # torch.cuda.set_device(gpu_number)
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -319,7 +315,7 @@ def cmaes_wrapper_use_coef(SC_path,
     num_gradient_component = gradient_data.shape[1]
     N = 3 * (num_myelin_component + num_gradient_component + 1) + 1  # number of parameterized parameters 10
     N_p = num_myelin_component + num_gradient_component + 1  # nunber of parameterized parameter associated to each parameter 3
-    n_node = SC.shape[0]  # 68
+    n_node = NUM_REGION  # 68
     dim = n_node * 3 + 1  # 205
 
     wEE_min, wEE_max, wEI_min, wEI_max = 1, 10, 1, 5
@@ -1015,13 +1011,14 @@ def simulate_with_predicted_best_wrapper(param_folder_name='grad_desc_wrapper_gi
 
 
 def try_diff_seed(seed_range):
-    # group_path = get_path_to_group('train', '5')
-    # SC_path = os.path.join(group_path, 'group_level_SC.csv')
-    # myelin_path = os.path.join(group_path, 'group_level_myelin.csv')
-    # gradient_path = os.path.join(group_path, 'group_level_RSFC_gradient.csv')
+    group_path = get_path_to_group('train', '5')
+    SC_path = os.path.join(group_path, 'group_level_SC.csv')
+    myelin_path = os.path.join(group_path, 'group_level_myelin.csv')
+    gradient_path = os.path.join(group_path, 'group_level_RSFC_gradient.csv')
 
     for random_seed in seed_range:
-        cmaes_wrapper(random_seed=random_seed)
+        # cmaes_wrapper(random_seed=random_seed)
+        cmaes_wrapper_use_coef(myelin_path, gradient_path, SC_path, random_seed=random_seed)
         # grad_desc_wrapper(random_seed=random_seed, n_iteration=10000, verbose_mode=True)
 
 

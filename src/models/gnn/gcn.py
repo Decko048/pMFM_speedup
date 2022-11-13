@@ -66,7 +66,7 @@ class Gcn(PlModule):
         generate sequential features from a large graph formed by graphs in a batch
 
         Args:
-            batch (torch_geometric.data.Batch): Data describing the large batch graph, inherits from torch_geometric.data.Data and contains an additional attribute called `batch`
+            batch (torch_geometric.data.Batch): Data describing the large batch graph, inherits from torch_geometric.data.Data and contains an additional attribute called `batch` # noqa: E501
         """
 
         # Note that the batch_indices here is used to assign nodes to their corresponding graphs

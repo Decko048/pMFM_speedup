@@ -29,9 +29,11 @@ def compare_top_k_params():
         get_top_k_prediction(subject_group, model, k=k, ignore_negative_costs=False)
         # gnn_get_top_k_prediction(subject_group, model, k=k, ignore_negative_costs=False)
 
-    pred_and_actual_cost_corr_dist('test', base_dir=os.path.join(PATH_TO_TESTING_REPORT, 'compare_top_k_params'), prediction_file_name=f'predicted_top_{k}.csv')
+    pred_and_actual_cost_corr_dist('test',
+                                   base_dir=os.path.join(PATH_TO_TESTING_REPORT, 'compare_top_k_params'),
+                                   prediction_file_name=f'predicted_top_{k}.csv')
 
 
 if __name__ == '__main__':
-    # compare_top_k_params()
-    pass
+    compare_top_k_params()
+    # pass

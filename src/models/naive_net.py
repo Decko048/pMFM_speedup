@@ -1,15 +1,11 @@
-import os
 from typing import List
-from numpy import extract
 
 import torch
 import torch.nn as nn
 
 import optuna
-from optuna.integration import PyTorchLightningPruningCallback
 
 from pytorch_lightning import Trainer, loggers as pl_loggers
-from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 
 from src.utils.training_utils import get_trainer_callbacks
 from src.basic.constants import LOG_INTERVAL

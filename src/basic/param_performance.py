@@ -1,6 +1,6 @@
-from src.basic.constants import *
 import torch
 from torch import Tensor
+from src.basic.constants import FC_CORR_UPPER_BOUND, FC_L1_UPPER_BOUND, FCD_KS_UPPER_BOUND, NUM_REGION
 
 
 class ParamPerformance:

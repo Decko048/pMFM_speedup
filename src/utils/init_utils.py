@@ -1,13 +1,13 @@
 import os
 import pickle
 import torch
-from src.basic.constants import MANUAL_SEED, PATH_TO_DATASET, PATH_TO_PROCESSED_DATA
-import random
+# import random
+import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 from pytorch_lightning import seed_everything
-from src.basic.param_dataset import ParamCoefDataset, ParamDataset, ParamDatasetNoSC
 from torch.utils.data import random_split
+from src.basic.constants import MANUAL_SEED, PATH_TO_PROCESSED_DATA
+from src.basic.param_dataset import ParamCoefDataset, ParamDataset, ParamDatasetNoSC
 
 
 def seed_all():
@@ -42,7 +42,7 @@ def load_split(split_name: str, use_SC=True, use_coef=False):
     dataset_path = os.path.join(PATH_TO_PROCESSED_DATA, f'{file_prefix}{split_name}_ds{file_suffix}.pickle')
     try:
         dataset = pickle.load(open(dataset_path, "rb"))
-    except OSError as e:
+    except OSError:
         if use_coef:
             dataset = ParamCoefDataset(split_name)
         elif use_SC:
@@ -69,9 +69,6 @@ def shrink_dataset(ds, target_size_ratio):
     print(f'Using {len(shrunk_dataset)} samples')
 
     return shrunk_dataset
-
-import matplotlib.pyplot as plt
-import numpy as np
 
 
 # Helper function for inline image display

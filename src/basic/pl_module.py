@@ -1,4 +1,3 @@
-import sched
 import torch
 from torch import optim
 
